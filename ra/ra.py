@@ -1,15 +1,17 @@
 import time
-
+import progressbar
 
 with open ('reviews.txt', 'r') as file: # 開啟某個檔案並讀取內容，使用with open ('file_name.type', 'r') as ___
 	data = []
 	count = 0
+	bar = progressbar.ProgressBar(max_value=1000000)
 	start_time = time.time() # 載入time模組。 .time(): 表示時間開始累加
 	for line in file: #for loop填寫至data清單中
 		data.append(line) # 透過.append函式將line內容裝進data[]裏頭中，裏頭100W比留言line
 		count += 1 #每裝一筆，count數+1
-		if count % 100000 == 0: #如果count /100000且餘數=0時，列印出此時data進行的長度。
-			print(len(data))
+		bar.update(count)
+		#if count % 1000 == 0: #如果count /100000且餘數=0時，列印出此時data進行的長度。
+			#print(len(data))
 	end_time = time.time()
 print('總共花了', end_time - start_time, '秒')
 dic = {}
