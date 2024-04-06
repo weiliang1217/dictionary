@@ -1,11 +1,17 @@
+import time
+
+
 with open ('reviews.txt', 'r') as file: # 開啟某個檔案並讀取內容，使用with open ('file_name.type', 'r') as ___
 	data = []
 	count = 0
-	for line in file: #  for loop填寫至data清單中
+	start_time = time.time() # 載入time模組。 .time(): 表示時間開始累加
+	for line in file: #for loop填寫至data清單中
 		data.append(line) # 透過.append函式將line內容裝進data[]裏頭中，裏頭100W比留言line
 		count += 1 #每裝一筆，count數+1
 		if count % 100000 == 0: #如果count /100000且餘數=0時，列印出此時data進行的長度。
 			print(len(data))
+	end_time = time.time()
+print('總共花了', end_time - start_time, '秒')
 dic = {}
 for line in data: # 由上述data[]中，已經存放100W line
 	line_words = line.split() #如果以第一筆留言為例，for第一留言時，以split()將第一留言以''不含空格來拆分。 所以會變成一個一個字宣告為cs中
